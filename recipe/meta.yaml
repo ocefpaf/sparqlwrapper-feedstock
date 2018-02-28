@@ -1,25 +1,22 @@
-{% set name = "SPARQLWrapper" %}
-{% set version = "1.8.0" %}
-{% set sha256 = "3b46d0f18ca0b65b8b965d6d1ae257b229388400b06e7dc19f0a51614dc1abde" %}
+{% set version = "1.8.1" %}
 
 package:
-  name: {{ name|lower }}
+  name: sparqlwrapper
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: https://pypi.io/packages/source/S/SPARQLWrapper/SPARQLWrapper-{{ version }}.tar.gz
+  sha256: da760be6f448f2030f2b4f7cecd4c55b0c2133458d5c420c50f78169db133e82
 
 build:
   number: 0
-  script: python setup.py install --single-version-externally-managed --record record.txt
+  noarch: python
+  script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
   build:
     - python
-    - setuptools
-
+    - pip
   run:
     - python
     - keepalive
